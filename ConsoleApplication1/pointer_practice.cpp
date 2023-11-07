@@ -1,17 +1,7 @@
-# include<iostream>
-# include<stdio.h>
-
-# include<set>
-# include<unordered_set>
-# include<map>
-# include<unordered_map>
-# include<vector>
-# include<list>
-# include<stack>
-# include<queue>
-# include<time.h>
-//# include<priority_queue>
-//# include <pair>
+# include "pointer_practice.h"
+# include <iostream>
+# include <stdio.h>
+# include <time.h>
 
 typedef const char* String;
 
@@ -20,15 +10,22 @@ using namespace std;
 //void swap_price(float*, float*);
 void swap_price2(float&, float&);
 
-int main(int argc, char* argv[]) {
+int pointer_practice(int argc, char *argv[]) {
 	srand(time(NULL));
 
+	// pointer
 	/*int age = 10;
 	int* ptrAge = &age;
 	printf("%o\n", ptrAge);
 	printf("%x\n", ptrAge);
 	printf("%p\n", ptrAge);*/
 
+	// int age = 29;
+	// int* agePtr = &age;
+	// printf("%p\n", agePtr);
+	// printf("%d", *agePtr);
+
+	// call by reference
 	/*
 	float price = 19.99;
 	float price2 = 59.99;
@@ -51,6 +48,7 @@ int main(int argc, char* argv[]) {
 		printf("*(score + %d)=%d\n", i, *(score + i));
 	}*/
 
+	// double array
 	//int score2[][3] = { {90, 80, 70}, {85, 70, 60}, {99, 87, 56} };
 
 	/*for (int i = 0; i < sizeof(score2) / sizeof(score2[0]); i++) {
@@ -73,7 +71,28 @@ int main(int argc, char* argv[]) {
 		printf("\n");
 	}*/
 
-	//char arr
+	int arr[2][2] = { {1,2},{3,4} };
+	printf("arr.length=%d\n", (int)sizeof(arr));
+	printf("arr[0].length=%d\n", (int)sizeof(*arr));
+	printf("int size=%d\n", (int)sizeof(int));
+
+	printf("arr.length[*(&arr+1)-arr)]=%d\n", *(&arr + 1) - arr);
+	printf("arr[0].length[*(&arr[0] + 1 ) - arr[0]]=%d\n", *(&arr[0] + 1 ) - arr[0]);
+	printf("int size=%d\n", (int)sizeof(int));
+
+	int* arr2[2] = { *arr, *(arr + 1) };
+	int(*arr3)[2] = arr;
+
+	for (int i = 0; i < (int)sizeof(arr) / sizeof(*arr); i++) {
+		for (int j = 0; j < (int)sizeof(*arr) / sizeof(int); j++) {
+			printf("*(*(arr2+%d)+%d)=%d\t", i, j, *(*(arr2 + i) + j));
+			printf("*(*(arr3+%d)+%d)=%d\t", i, j, *(*(arr3 + i) + j));
+		}
+		printf("\n");
+	}
+
+	//char array
+	// 
 	//char name[] = "changken";
 	//char name2[] = { 'k', 'e', 'n', '\0' };
 	//char name3[][4] = { "sss", "bbb", "ccc" };
@@ -98,6 +117,8 @@ int main(int argc, char* argv[]) {
 	//int col3 = *(&name3[0] + 1) - name3[0];
 	//printf("row=%d, col=%d\n", row3, col3);
 
+	// const char* == String
+	/* 
 	char name[] = "changken";
 	char name2[][4] = { "aaa", "bbb", "ccc" };
 	const char* name3[] = { "aaa", "bbb", "ccc" };
@@ -105,7 +126,10 @@ int main(int argc, char* argv[]) {
 	String s = a;
 	s = *(name2 + 1);
 	a = name;
+	*/
 
+	// malloc calloc free
+	// 
 	//int *age = (int*) malloc(sizeof(int));
 
 	/*int* age = (int*)calloc(100, sizeof(int));
@@ -116,6 +140,7 @@ int main(int argc, char* argv[]) {
 
 	free(age);*/
 
+	/*
 	int row = 10;
 	int col = 5;
 	int** age = (int**)calloc(row, sizeof(int*));
@@ -138,9 +163,7 @@ int main(int argc, char* argv[]) {
 	}
 
 	free(age);
-
-
-	set<char> mset;
+	*/
 	
 	return 0;
 }
